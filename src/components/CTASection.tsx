@@ -10,8 +10,8 @@ const CTASection = () => {
 
       <div className="container mx-auto px-4 relative z-10 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 40 }}
+          whileInView={{  y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >

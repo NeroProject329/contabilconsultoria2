@@ -32,8 +32,8 @@ const HowItWorksSection = () => {
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 30 }}
+          whileInView={{ y: 0 }}
           viewport={{ once: true }}
         >
           <span className="section-badge mb-4">Passo a Passo</span>
@@ -50,8 +50,8 @@ const HowItWorksSection = () => {
             <motion.div
               key={step.number}
               className="glass-card overflow-hidden"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ y: 50 }}
+              whileInView={{ y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
               whileHover={{ y: -8 }}

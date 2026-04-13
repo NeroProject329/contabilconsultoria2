@@ -16,8 +16,8 @@ const StatsSection = () => {
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{  y: 30 }}
+          whileInView={{  y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
@@ -32,8 +32,8 @@ const StatsSection = () => {
             <motion.div
               key={stat.label}
               className="glass-card p-6 text-center"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{  y: 40 }}
+              whileInView={{ y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >

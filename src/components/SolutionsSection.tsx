@@ -18,8 +18,8 @@ const SolutionsSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             className="relative"
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ x: -40 }}
+            whileInView={{ x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
@@ -35,8 +35,8 @@ const SolutionsSection = () => {
             </div>
             <motion.div
               className="absolute -bottom-4 right-4 sm:-right-4 md:right-8 glass-card p-3 sm:p-4"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{  scale: 0.8 }}
+              whileInView={{scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
             >
@@ -46,8 +46,8 @@ const SolutionsSection = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ x: 40 }}
+            whileInView={{  x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
@@ -65,8 +65,8 @@ const SolutionsSection = () => {
                 <motion.div
                   key={feature}
                   className="flex items-center gap-2"
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{  x: 20 }}
+                  whileInView={{  x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 + i * 0.1 }}
                 >
