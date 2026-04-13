@@ -76,7 +76,7 @@ const SolutionsSection = () => {
               ))}
             </div>
 
-            <button className="btn-primary-hero" onClick={() => void openZap("Olá! Quero ver as soluções disponíveis.")}>
+            <button className="btn-primary-solution" onClick={() => void openZap("Olá! Quero ver as soluções disponíveis.")}>
   Ver Soluções Disponíveis
 </button>
           </motion.div>
