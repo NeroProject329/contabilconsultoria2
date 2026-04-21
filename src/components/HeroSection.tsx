@@ -101,6 +101,7 @@ const HeroSection = () => {
           <motion.div
             className="flex justify-center order-last lg:order-none"
             initial={{ scale: 0.8 }}
+            
             animate={{ scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
