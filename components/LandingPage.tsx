@@ -13,13 +13,13 @@ import { useWhatsApp } from "@/components/providers/WhatsAppProvider";
 
 const WHATSAPP_MESSAGES = {
   header:
-    "Olá! Gostaria de falar com um especialista sobre a minha situação financeira.",
+    "Olá! Gostaria de descobrir os descontos solicitados em meu acordo.",
   hero:
-    "Olá! Quero entender quais opções estão disponíveis para a minha situação.",
+    "Olá! Gostaria de descobrir os descontos solicitados em meu acordo.",
   cta:
-    "Olá! Gostaria de receber uma orientação sobre os próximos passos para organizar minha vida financeira.",
+    "Olá! Gostaria de descobrir os descontos solicitados em meu acordo.",
   floating:
-    "Olá! Gostaria de falar com um especialista da Assessoria & Consulta.",
+    "Olá! Gostaria de descobrir os descontos solicitados em meu acordo.",
 } as const;
 
 const navItems = [
