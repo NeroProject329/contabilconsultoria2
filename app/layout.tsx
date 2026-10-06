@@ -20,9 +20,9 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Assessoria & Consulta | Consultoria para pessoa física",
+  title: "Borges Ferreira | Consultoria Contábil e Empresarial",
   description:
-    "Consultoria personalizada para ajudar você a compreender sua situação e tomar decisões com mais segurança.",
+    "Contabilidade e consultoria empresarial para decisões seguras, organização fiscal e crescimento sustentável em Trindade, Goiás.",
 };
 
 export default function RootLayout({
@@ -33,9 +33,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${fredoka.variable} ${nunito.variable}`}>
-        <WhatsAppProvider>
-          {children}
-        </WhatsAppProvider>
+        <WhatsAppProvider>{children}</WhatsAppProvider>
       </body>
     </html>
   );

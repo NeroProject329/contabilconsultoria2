@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { COMPANY } from "@/lib/company";
 
 export const metadata: Metadata = {
-  title: "Termos de Uso | Assessoria & Consulta",
+  title: "Termos de Uso | Borges Ferreira",
   description:
-    "Consulte as regras e condições para navegar e utilizar o site da Assessoria & Consulta.",
-};
-
-const COMPANY = {
-  name: "Assessoria & Consulta",
-  cnpj: "57.924.057/0001-02",
-  email: "contato@consultoriacontabil.pro",
+    "Consulte as regras e condições para navegar e utilizar o site da Borges Ferreira Consultoria Contábil e Empresarial.",
 };
 
 export default function TermsOfUsePage() {
@@ -27,13 +22,13 @@ export default function TermsOfUsePage() {
             Termos de <strong>Uso.</strong>
           </h1>
           <p>
-            Estes Termos apresentam as condições para acessar o site, utilizar seus
-            conteúdos e entrar em contato com a nossa equipe.
+            Estes Termos apresentam as condições para acessar o site, utilizar
+            seus conteúdos e entrar em contato com a nossa equipe.
           </p>
 
           <div className="legal-update">
             <span aria-hidden="true">✓</span>
-            Última atualização: 24 de julho de 2026
+            Última atualização: {COMPANY.updatedAt}
           </div>
         </div>
 
@@ -44,10 +39,12 @@ export default function TermsOfUsePage() {
         <div className="legal-container legal-document-layout">
           <aside className="legal-summary legal-summary-blue">
             <span>Antes de continuar</span>
-            <h2>A navegação no site representa a concordância com estes Termos.</h2>
+            <h2>
+              A navegação no site representa a concordância com estes Termos.
+            </h2>
             <p>
-              Os serviços eventualmente contratados serão detalhados em proposta ou
-              instrumento próprio.
+              Os serviços eventualmente contratados serão detalhados em proposta
+              ou instrumento próprio.
             </p>
             <Link className="legal-contact-button" href="/">
               Voltar à página inicial
@@ -57,185 +54,245 @@ export default function TermsOfUsePage() {
 
           <article className="legal-document">
             <section id="aceitacao">
-              <span className="legal-section-number legal-section-number-blue">01</span>
+              <span className="legal-section-number legal-section-number-blue">
+                01
+              </span>
               <div>
                 <h2>Aceitação dos Termos</h2>
                 <p>
-                  Ao acessar ou utilizar este site, você declara que leu e concorda com
-                  estes Termos de Uso e com a nossa Política de Privacidade. Caso não
-                  concorde, interrompa a utilização do site.
+                  Ao acessar ou utilizar este site, você declara que leu e
+                  concorda com estes Termos de Uso e com a nossa Política de
+                  Privacidade. Caso não concorde, interrompa a utilização do
+                  site.
                 </p>
               </div>
             </section>
 
             <section id="identificacao">
-              <span className="legal-section-number legal-section-number-blue">02</span>
+              <span className="legal-section-number legal-section-number-blue">
+                02
+              </span>
               <div>
                 <h2>Identificação</h2>
                 <p>
-                  O site é operado por <strong>{COMPANY.name}</strong>, inscrita no CNPJ
-                  sob o número <strong>{COMPANY.cnpj}</strong>. O contato oficial é
+                  O site é operado por <strong>{COMPANY.legalName}</strong>,
+                  nome fantasia
+                  <strong> {COMPANY.name}</strong>, inscrita no CNPJ sob o
+                  número
+                  <strong> {COMPANY.cnpj}</strong> e registrada no CRCGO sob o
+                  número
+                  <strong> {COMPANY.crc}</strong>. O contato oficial é
                   <a href={`mailto:${COMPANY.email}`}> {COMPANY.email}</a>.
                 </p>
               </div>
             </section>
 
             <section id="finalidade">
-              <span className="legal-section-number legal-section-number-blue">03</span>
+              <span className="legal-section-number legal-section-number-blue">
+                03
+              </span>
               <div>
                 <h2>Finalidade do site</h2>
                 <p>
-                  O site possui finalidade institucional e informativa. Ele apresenta a
-                  empresa, seus diferenciais e possibilidades de atendimento, além de
-                  disponibilizar canais para que o visitante solicite informações ou uma
-                  avaliação inicial.
+                  O site possui finalidade institucional e informativa. Ele
+                  apresenta a empresa, seus serviços contábeis, fiscais,
+                  trabalhistas e de consultoria empresarial, além de
+                  disponibilizar canais para que o visitante solicite
+                  informações ou um atendimento inicial.
                 </p>
                 <p>
-                  O conteúdo público do site não constitui diagnóstico definitivo,
-                  promessa de resultado, recomendação individual automática ou substituição
-                  de uma análise personalizada.
+                  O conteúdo público do site não constitui parecer contábil,
+                  fiscal ou jurídico, promessa de resultado ou substituição de
+                  uma análise técnica realizada a partir dos documentos e do
+                  contexto de cada empresa.
                 </p>
               </div>
             </section>
 
             <section id="servicos">
-              <span className="legal-section-number legal-section-number-blue">04</span>
+              <span className="legal-section-number legal-section-number-blue">
+                04
+              </span>
               <div>
                 <h2>Contratação dos serviços</h2>
                 <p>
-                  A contratação somente será formalizada após a definição do escopo,
-                  condições, valores, responsabilidades e prazos em proposta, contrato ou
-                  outro instrumento apresentado ao cliente.
+                  A contratação somente será formalizada após a definição do
+                  escopo, condições, valores, responsabilidades e prazos em
+                  proposta, contrato ou outro instrumento apresentado ao
+                  cliente.
                 </p>
                 <p>
-                  Informações exibidas no site não substituem as condições específicas do
-                  documento de contratação. Em caso de divergência, prevalecerá o documento
-                  firmado entre as partes, respeitada a legislação aplicável.
+                  Informações exibidas no site não substituem as condições
+                  específicas do documento de contratação. Em caso de
+                  divergência, prevalecerá o documento firmado entre as partes,
+                  respeitada a legislação aplicável.
                 </p>
               </div>
             </section>
 
             <section id="responsabilidades-usuario">
-              <span className="legal-section-number legal-section-number-blue">05</span>
+              <span className="legal-section-number legal-section-number-blue">
+                05
+              </span>
               <div>
                 <h2>Responsabilidades do usuário</h2>
                 <p>Ao utilizar o site, você se compromete a:</p>
                 <ul>
                   <li>fornecer informações verdadeiras e atualizadas;</li>
-                  <li>não utilizar o site para finalidades ilícitas ou fraudulentas;</li>
-                  <li>não tentar acessar áreas, sistemas ou dados sem autorização;</li>
-                  <li>não introduzir códigos maliciosos ou prejudicar o funcionamento do site;</li>
-                  <li>respeitar os direitos de propriedade intelectual e de terceiros;</li>
                   <li>
-                    preservar seus próprios dispositivos, contas, senhas e meios de acesso.
+                    não utilizar o site para finalidades ilícitas ou
+                    fraudulentas;
+                  </li>
+                  <li>
+                    não tentar acessar áreas, sistemas ou dados sem autorização;
+                  </li>
+                  <li>
+                    não introduzir códigos maliciosos ou prejudicar o
+                    funcionamento do site;
+                  </li>
+                  <li>
+                    respeitar os direitos de propriedade intelectual e de
+                    terceiros;
+                  </li>
+                  <li>
+                    preservar seus próprios dispositivos, contas, senhas e meios
+                    de acesso.
                   </li>
                 </ul>
               </div>
             </section>
 
             <section id="conteudos">
-              <span className="legal-section-number legal-section-number-blue">06</span>
+              <span className="legal-section-number legal-section-number-blue">
+                06
+              </span>
               <div>
                 <h2>Conteúdos e propriedade intelectual</h2>
                 <p>
-                  Textos, marcas, identidade visual, ilustrações, elementos gráficos,
-                  códigos, vídeos, imagens e demais conteúdos do site são protegidos pela
-                  legislação aplicável e não podem ser copiados, reproduzidos, alterados,
-                  distribuídos ou explorados comercialmente sem autorização.
+                  Textos, marcas, identidade visual, ilustrações, elementos
+                  gráficos, códigos, vídeos, imagens e demais conteúdos do site
+                  são protegidos pela legislação aplicável e não podem ser
+                  copiados, reproduzidos, alterados, distribuídos ou explorados
+                  comercialmente sem autorização.
                 </p>
                 <p>
-                  É permitido compartilhar o endereço público das páginas, desde que isso
-                  não sugira parceria, endosso ou vínculo inexistente com a empresa.
+                  É permitido compartilhar o endereço público das páginas, desde
+                  que isso não sugira parceria, endosso ou vínculo inexistente
+                  com a empresa.
                 </p>
               </div>
             </section>
 
             <section id="disponibilidade">
-              <span className="legal-section-number legal-section-number-blue">07</span>
+              <span className="legal-section-number legal-section-number-blue">
+                07
+              </span>
               <div>
                 <h2>Disponibilidade e atualizações</h2>
                 <p>
-                  Buscamos manter o site disponível e atualizado, mas podem ocorrer
-                  interrupções temporárias para manutenção, atualização, falhas técnicas,
-                  indisponibilidade de fornecedores ou situações fora do nosso controle.
+                  Buscamos manter o site disponível e atualizado, mas podem
+                  ocorrer interrupções temporárias para manutenção, atualização,
+                  falhas técnicas, indisponibilidade de fornecedores ou
+                  situações fora do nosso controle.
                 </p>
                 <p>
-                  Conteúdos, funcionalidades e informações podem ser alterados ou removidos
-                  quando necessário, sem prejuízo de direitos já constituídos.
+                  Conteúdos, funcionalidades e informações podem ser alterados
+                  ou removidos quando necessário, sem prejuízo de direitos já
+                  constituídos.
                 </p>
               </div>
             </section>
 
             <section id="terceiros">
-              <span className="legal-section-number legal-section-number-blue">08</span>
+              <span className="legal-section-number legal-section-number-blue">
+                08
+              </span>
               <div>
                 <h2>Serviços e links de terceiros</h2>
                 <p>
-                  O site pode conter links para WhatsApp, redes sociais e outros serviços
-                  externos. O acesso a esses ambientes está sujeito aos termos e políticas
-                  dos respectivos fornecedores, que são responsáveis por seus próprios
-                  sistemas e práticas.
+                  O site pode conter links para WhatsApp, redes sociais e outros
+                  serviços externos. O acesso a esses ambientes está sujeito aos
+                  termos e políticas dos respectivos fornecedores, que são
+                  responsáveis por seus próprios sistemas e práticas.
                 </p>
               </div>
             </section>
 
             <section id="responsabilidade">
-              <span className="legal-section-number legal-section-number-blue">09</span>
+              <span className="legal-section-number legal-section-number-blue">
+                09
+              </span>
               <div>
                 <h2>Limites de responsabilidade</h2>
                 <p>
-                  Dentro dos limites permitidos pela legislação, não nos responsabilizamos
-                  por danos decorrentes do uso inadequado do site, de informações falsas
-                  fornecidas pelo usuário, de falhas externas, de ataques de terceiros ou
-                  de decisões tomadas exclusivamente com base em conteúdo geral, sem a
-                  contratação de uma análise individual.
+                  Dentro dos limites permitidos pela legislação, não nos
+                  responsabilizamos por danos decorrentes do uso inadequado do
+                  site, de informações falsas fornecidas pelo usuário, de falhas
+                  externas, de ataques de terceiros ou de decisões tomadas
+                  exclusivamente com base em conteúdo geral, sem a contratação
+                  de uma análise individual.
                 </p>
                 <p>
-                  Nenhuma disposição destes Termos exclui ou reduz direitos que não possam
-                  ser afastados pela legislação de proteção do consumidor.
+                  Nenhuma disposição destes Termos exclui ou reduz direitos que
+                  não possam ser afastados pela legislação de proteção do
+                  consumidor.
                 </p>
               </div>
             </section>
 
             <section id="privacidade">
-              <span className="legal-section-number legal-section-number-blue">10</span>
+              <span className="legal-section-number legal-section-number-blue">
+                10
+              </span>
               <div>
                 <h2>Privacidade e dados pessoais</h2>
                 <p>
-                  O tratamento de dados pessoais relacionado ao site e aos canais de
-                  atendimento é descrito na nossa
-                  <Link href="/politica-de-privacidade"> Política de Privacidade</Link>,
-                  que integra estes Termos.
+                  O tratamento de dados pessoais relacionado ao site e aos
+                  canais de atendimento é descrito na nossa
+                  <Link href="/politica-de-privacidade">
+                    {" "}
+                    Política de Privacidade
+                  </Link>
+                  , que integra estes Termos.
                 </p>
               </div>
             </section>
 
             <section id="alteracoes">
-              <span className="legal-section-number legal-section-number-blue">11</span>
+              <span className="legal-section-number legal-section-number-blue">
+                11
+              </span>
               <div>
                 <h2>Alterações destes Termos</h2>
                 <p>
-                  Estes Termos podem ser atualizados para refletir mudanças legais,
-                  técnicas, operacionais ou nos serviços. A versão vigente será publicada
-                  nesta página com a respectiva data de atualização.
+                  Estes Termos podem ser atualizados para refletir mudanças
+                  legais, técnicas, operacionais ou nos serviços. A versão
+                  vigente será publicada nesta página com a respectiva data de
+                  atualização.
                 </p>
               </div>
             </section>
 
             <section id="lei-foro">
-              <span className="legal-section-number legal-section-number-blue">12</span>
+              <span className="legal-section-number legal-section-number-blue">
+                12
+              </span>
               <div>
                 <h2>Legislação e solução de conflitos</h2>
                 <p>
-                  Estes Termos são regidos pela legislação brasileira. Eventuais conflitos
-                  deverão ser solucionados pelos meios legalmente competentes, observadas
-                  as regras de proteção do consumidor e o foro aplicável conforme a lei.
+                  Estes Termos são regidos pela legislação brasileira. Eventuais
+                  conflitos deverão ser solucionados pelos meios legalmente
+                  competentes, observadas as regras de proteção do consumidor e,
+                  quando aplicável, o foro da
+                  {` ${COMPANY.venue}`}.
                 </p>
               </div>
             </section>
 
             <section id="contato">
-              <span className="legal-section-number legal-section-number-blue">13</span>
+              <span className="legal-section-number legal-section-number-blue">
+                13
+              </span>
               <div>
                 <h2>Contato</h2>
                 <p>
@@ -249,7 +306,9 @@ export default function TermsOfUsePage() {
               <div>
                 <span>Documento relacionado</span>
                 <h2>Consulte nossa Política de Privacidade.</h2>
-                <p>Veja como seus dados pessoais podem ser tratados e protegidos.</p>
+                <p>
+                  Veja como seus dados pessoais podem ser tratados e protegidos.
+                </p>
               </div>
               <Link href="/politica-de-privacidade">
                 Ver Política

@@ -1,20 +1,19 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { COMPANY } from "@/lib/company";
 import "./legal.css";
-
-const COMPANY = {
-  name: "Assessoria & Consulta",
-  cnpj: "57.924.057/0001-02",
-  email: "contato@consultoriacontabil.pro",
-};
 
 export default function LegalLayout({ children }: { children: ReactNode }) {
   return (
     <div className="legal-site">
       <header className="legal-header">
         <div className="legal-container legal-header-inner">
-          <Link className="legal-brand" href="/" aria-label={`${COMPANY.name} - início`}>
-            <span className="legal-brand-mark">A</span>
+          <Link
+            className="legal-brand"
+            href="/"
+            aria-label={`${COMPANY.name} - início`}
+          >
+            <span className="legal-brand-mark">B</span>
             <span>{COMPANY.name}</span>
           </Link>
 
@@ -35,12 +34,12 @@ export default function LegalLayout({ children }: { children: ReactNode }) {
         <div className="legal-container legal-footer-grid">
           <div>
             <Link className="legal-brand legal-brand-footer" href="/">
-              <span className="legal-brand-mark">A</span>
+              <span className="legal-brand-mark">B</span>
               <span>{COMPANY.name}</span>
             </Link>
             <p>
-              Orientação personalizada para você compreender sua situação e tomar
-              decisões com mais clareza e tranquilidade.
+              Contabilidade e consultoria empresarial para decisões mais
+              seguras, organização fiscal e crescimento sustentável.
             </p>
           </div>
 
@@ -53,6 +52,7 @@ export default function LegalLayout({ children }: { children: ReactNode }) {
           <div>
             <strong>Contato</strong>
             <span>CNPJ: {COMPANY.cnpj}</span>
+            <span>Registro CRCGO: {COMPANY.crc}</span>
             <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
           </div>
         </div>

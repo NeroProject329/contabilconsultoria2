@@ -1,4 +1,4 @@
-# Assessoria & Consulta — Next.js
+# Borges Ferreira — Consultoria Contábil e Empresarial
 
 Landing page institucional baseada no primeiro conceito aprovado, com visual direto e animações premium.
 
