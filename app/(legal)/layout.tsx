@@ -52,7 +52,6 @@ export default function LegalLayout({ children }: { children: ReactNode }) {
           <div>
             <strong>Contato</strong>
             <span>CNPJ: {COMPANY.cnpj}</span>
-            <span>Registro CRCGO: {COMPANY.crc}</span>
             <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
           </div>
         </div>

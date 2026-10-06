@@ -79,9 +79,7 @@ export default function TermsOfUsePage() {
                   nome fantasia
                   <strong> {COMPANY.name}</strong>, inscrita no CNPJ sob o
                   número
-                  <strong> {COMPANY.cnpj}</strong> e registrada no CRCGO sob o
-                  número
-                  <strong> {COMPANY.crc}</strong>. O contato oficial é
+                  <strong> {COMPANY.cnpj}</strong>. O contato oficial é
                   <a href={`mailto:${COMPANY.email}`}> {COMPANY.email}</a>.
                 </p>
               </div>

@@ -1,24 +1,31 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 
 import { LandingAnimations } from "./LandingAnimations";
 import { useWhatsApp } from "@/components/providers/WhatsAppProvider";
-import { COMPANY } from "@/lib/company";
 
 const WHATSAPP_MESSAGES = {
   header:
-    "Olá! Gostaria de conhecer as soluções contábeis da Borges Ferreira para minha empresa.",
-  hero: "Olá! Gostaria de conversar sobre a contabilidade da minha empresa.",
-  cta: "Olá! Gostaria de solicitar uma análise contábil para minha empresa.",
-  floating: "Olá! Gostaria de falar com a equipe da Borges Ferreira.",
+    "Olá! Gostaria de descobrir os descontos solicitados em meu acordo.",
+  hero:
+    "Olá! Gostaria de descobrir os descontos solicitados em meu acordo.",
+  cta:
+    "Olá! Gostaria de descobrir os descontos solicitados em meu acordo.",
+  floating:
+    "Olá! Gostaria de descobrir os descontos solicitados em meu acordo.",
 } as const;
 
 const navItems = [
   ["Início", "#inicio"],
-  ["Soluções", "#diferenciais"],
-  ["Como atuamos", "#processo"],
+  ["Diferenciais", "#diferenciais"],
+  ["Como funciona", "#processo"],
   ["Depoimentos", "#depoimentos"],
   ["Dúvidas", "#faq"],
   ["Contato", "#contato"],
@@ -27,78 +34,69 @@ const navItems = [
 const benefits = [
   {
     icon: "users",
-    title: "Rigor técnico",
-    description:
-      "Rotinas contábeis conduzidas com precisão, conformidade e responsabilidade.",
+    title: "Atendimento Humano",
+    description: "Você é ouvido com respeito, atenção e sem julgamentos.",
   },
   {
     icon: "shapes",
-    title: "Análise personalizada",
-    description:
-      "Cada orientação considera o porte, o momento e os objetivos da sua empresa.",
+    title: "Análise Personalizada",
+    description: "Cada orientação considera sua realidade e o seu momento.",
   },
   {
     icon: "spark",
-    title: "Informação clara",
-    description:
-      "Dados contábeis traduzidos em critérios objetivos para decisões mais seguras.",
+    title: "Clareza e Agilidade",
+    description: "Informações objetivas para você avançar sem complicação.",
   },
   {
     icon: "shield",
-    title: "Conformidade",
-    description:
-      "Obrigações fiscais, trabalhistas e empresariais acompanhadas com atenção contínua.",
+    title: "Segurança e Privacidade",
+    description: "Seus dados são tratados com cuidado durante todo o atendimento.",
   },
   {
     icon: "target",
-    title: "Visão de negócio",
-    description:
-      "Contabilidade conectada à realidade da gestão e ao crescimento sustentável.",
+    title: "Melhor Caminho",
+    description: "Você entende as opções e decide com mais tranquilidade.",
   },
 ];
 
 const steps = [
   {
     icon: "message",
-    title: "Diagnóstico",
-    description:
-      "Entendemos a operação, as prioridades e o momento atual da sua empresa.",
+    title: "Conte sua situação",
+    description: "Você explica o que precisa e compartilha as informações iniciais.",
   },
   {
     icon: "target",
-    title: "Estruturação",
-    description:
-      "Organizamos informações, enquadramento e rotinas conforme a necessidade do negócio.",
+    title: "Análise do caso",
+    description: "Avaliamos o cenário para identificar possibilidades adequadas.",
   },
   {
     icon: "settings",
-    title: "Orientação",
-    description:
-      "Apresentamos cenários, responsabilidades e próximos passos com clareza.",
+    title: "Orientação clara",
+    description: "Apresentamos os caminhos disponíveis de forma simples e objetiva.",
   },
   {
     icon: "chart",
     title: "Acompanhamento",
-    description:
-      "Mantemos uma atuação próxima para apoiar decisões e preservar a regularidade.",
+    description: "Você recebe suporte para seguir cada etapa com mais segurança.",
   },
 ];
 
 const testimonials = [
   {
-    text: "A equipe trouxe clareza para nossa rotina contábil e passou a apoiar decisões importantes da empresa.",
+    text: "Fui atendido com muita clareza e consegui entender melhor as opções para a minha situação.",
     name: "Marcelo Santos",
     role: "Cliente verificado",
     initials: "MS",
   },
   {
-    text: "Recebemos orientações objetivas, atendimento próximo e segurança para manter as obrigações em dia.",
+    text: "O atendimento foi humano, rápido e sem complicação. Me senti segura durante todo o processo.",
     name: "Juliana Oliveira",
     role: "Cliente verificada",
     initials: "JO",
   },
   {
-    text: "Cada etapa foi explicada com transparência, o que tornou nossa gestão mais organizada e previsível.",
+    text: "Explicaram cada etapa com objetividade e me ajudaram a seguir pelo caminho mais adequado.",
     name: "Ricardo Almeida",
     role: "Cliente verificado",
     initials: "RA",
@@ -107,34 +105,34 @@ const testimonials = [
 
 const faqs = [
   {
-    question: "Quais serviços contábeis a Borges Ferreira oferece?",
+    question: "Com quais situações vocês podem ajudar?",
     answer:
-      "Atuamos com contabilidade empresarial, planejamento tributário, departamento pessoal e consultoria empresarial, conforme as necessidades de cada negócio.",
+      "Analisamos cada caso individualmente para orientar sobre organização financeira, possibilidades de negociação e próximos passos.",
   },
   {
-    question: "Como funciona o primeiro diagnóstico?",
+    question: "Como funciona o primeiro atendimento?",
     answer:
-      "Começamos com uma conversa para compreender a empresa, o regime atual, as rotinas existentes e os principais objetivos da gestão.",
+      "Começamos com uma conversa para entender sua situação, suas prioridades e o que você deseja resolver.",
   },
   {
     question: "O atendimento pode ser feito online?",
     answer:
-      "Sim. O atendimento pode acontecer de forma digital, com comunicação próxima, troca segura de informações e suporte pelos canais oficiais.",
+      "Sim. Todo o processo pode acontecer de forma digital, com comunicação clara e suporte pelo WhatsApp.",
   },
   {
-    question: "Vocês atendem empresas de quais portes?",
+    question: "Em quanto tempo recebo uma orientação?",
     answer:
-      "Atendemos negócios em diferentes estágios. A proposta de trabalho considera o porte, o regime tributário, a equipe e a complexidade da operação.",
+      "O prazo varia conforme a complexidade do caso e as informações disponíveis. Desde o início, você entende quais serão as próximas etapas.",
   },
   {
     question: "Meus dados ficam protegidos?",
     answer:
-      "Sim. As informações são tratadas com confidencialidade e utilizadas apenas para análise, atendimento e execução dos serviços contratados.",
+      "Sim. As informações são tratadas com confidencialidade e utilizadas somente para analisar e conduzir o atendimento.",
   },
   {
-    question: "É possível trocar de contador?",
+    question: "Vocês atendem pessoas de todo o Brasil?",
     answer:
-      "Sim. A equipe orienta a transição, organiza a documentação necessária e conduz o início do atendimento com segurança e continuidade.",
+      "Sim. O atendimento remoto permite orientar pessoas de diferentes regiões do país com praticidade e segurança.",
   },
 ];
 
@@ -200,9 +198,7 @@ function Icon({ name, size = 24 }: { name: string; size?: number }) {
         <path d="m4 7 5-4 6 6 7-6" />
       </>
     ),
-    star: (
-      <path d="m12 2.8 2.7 5.47 6.03.88-4.36 4.25 1.03 6-5.4-2.84-5.4 2.84 1.03-6-4.36-4.25 6.03-.88Z" />
-    ),
+    star: <path d="m12 2.8 2.7 5.47 6.03.88-4.36 4.25 1.03 6-5.4-2.84-5.4 2.84 1.03-6-4.36-4.25 6.03-.88Z" />,
     arrow: (
       <>
         <path d="M5 12h14" />
@@ -285,11 +281,128 @@ function Reveal({
   );
 }
 
+type CountUpProps = {
+  target: number;
+  prefix?: string;
+  suffix?: string;
+  duration?: number;
+};
+
+function CountUp({
+  target,
+  prefix = "",
+  suffix = "",
+  duration = 1500,
+}: CountUpProps) {
+  const elementRef = useRef<HTMLElement>(null);
+  const frameRef = useRef<number | null>(null);
+  const currentValueRef = useRef(0);
+
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    const element = elementRef.current;
+
+    if (!element) return;
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const animateTo = (
+      destination: number,
+      animationDuration: number,
+    ) => {
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(frameRef.current);
+      }
+
+      if (reduceMotion) {
+        currentValueRef.current = destination;
+        setValue(destination);
+        return;
+      }
+
+      const initialValue = currentValueRef.current;
+      const difference = destination - initialValue;
+      const startTime = performance.now();
+
+      const animate = (currentTime: number) => {
+        const elapsed = currentTime - startTime;
+
+        const progress = Math.min(
+          elapsed / animationDuration,
+          1,
+        );
+
+        const easedProgress =
+          1 - Math.pow(1 - progress, 4);
+
+        const nextValue = Math.round(
+          initialValue + difference * easedProgress,
+        );
+
+        currentValueRef.current = nextValue;
+        setValue(nextValue);
+
+        if (progress < 1) {
+          frameRef.current =
+            window.requestAnimationFrame(animate);
+        } else {
+          frameRef.current = null;
+          currentValueRef.current = destination;
+          setValue(destination);
+        }
+      };
+
+      frameRef.current =
+        window.requestAnimationFrame(animate);
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          animateTo(target, duration);
+        } else {
+          animateTo(
+            0,
+            Math.max(550, duration * 0.58),
+          );
+        }
+      },
+      {
+        threshold: 0.4,
+        rootMargin: "-5% 0px -5% 0px",
+      },
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(
+          frameRef.current,
+        );
+      }
+    };
+  }, [duration, target]);
+
+  return (
+    <strong ref={elementRef}>
+      {prefix}
+      {value.toLocaleString("pt-BR")}
+      {suffix}
+    </strong>
+  );
+}
+
 function Brand() {
   return (
-    <a className="brand" href="#inicio" aria-label={`${COMPANY.name} - início`}>
-      <span className="brand-mark">B</span>
-      <span>{COMPANY.name}</span>
+    <a className="brand" href="#inicio" aria-label="Assessoria & Consulta - início">
+      <span className="brand-mark">A</span>
+      <span>Assessoria &amp; Consulta</span>
     </a>
   );
 }
@@ -300,37 +413,37 @@ function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   const handleNavigation = (
-    event: React.MouseEvent<HTMLAnchorElement>,
-    href: string,
-  ) => {
-    event.preventDefault();
+  event: React.MouseEvent<HTMLAnchorElement>,
+  href: string,
+) => {
+  event.preventDefault();
 
-    const target = document.querySelector<HTMLElement>(href);
+  const target = document.querySelector<HTMLElement>(href);
 
-    if (!target) return;
+  if (!target) return;
 
-    const headerHeight = 76;
+  const headerHeight = 76;
 
-    /*
-     * Em Diferenciais, avançamos mais 130px.
-     * Isso esconde completamente os cards do hero.
-     */
-    const extraOffset = href === "#diferenciais" ? 90 : 0;
+  /*
+   * Em Diferenciais, avançamos mais 130px.
+   * Isso esconde completamente os cards do hero.
+   */
+  const extraOffset = href === "#diferenciais" ? 90 : 0;
 
-    const targetPosition =
-      target.getBoundingClientRect().top +
-      window.scrollY -
-      headerHeight +
-      extraOffset;
+  const targetPosition =
+    target.getBoundingClientRect().top +
+    window.scrollY -
+    headerHeight +
+    extraOffset;
 
-    window.scrollTo({
-      top: targetPosition,
-      behavior: "smooth",
-    });
+  window.scrollTo({
+    top: targetPosition,
+    behavior: "smooth",
+  });
 
-    window.history.replaceState(null, "", href);
-    setOpen(false);
-  };
+  window.history.replaceState(null, "", href);
+  setOpen(false);
+};
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -344,15 +457,15 @@ function Header() {
       <div className="container header-inner">
         <Brand />
         <nav className="desktop-nav" aria-label="Navegação principal">
-          {navItems.map(([label, href]) => (
-            <a
-              key={href}
-              href={href}
-              onClick={(event) => handleNavigation(event, href)}
-            >
-              {label}
-            </a>
-          ))}
+       {navItems.map(([label, href]) => (
+  <a
+    key={href}
+    href={href}
+    onClick={(event) => handleNavigation(event, href)}
+  >
+    {label}
+  </a>
+))}
         </nav>
         <a
           className="button button-small header-cta"
@@ -364,7 +477,7 @@ function Header() {
             openWhatsApp(WHATSAPP_MESSAGES.header);
           }}
         >
-          {loading ? "Carregando..." : "Falar com a equipe"}
+          {loading ? "Carregando..." : "Consultar agora"}
           <Icon name="arrow" size={16} />
         </a>
         <button
@@ -379,15 +492,15 @@ function Header() {
       </div>
       <div className={`mobile-panel ${open ? "is-open" : ""}`}>
         <nav aria-label="Navegação mobile">
-          {navItems.map(([label, href]) => (
-            <a
-              key={href}
-              href={href}
-              onClick={(event) => handleNavigation(event, href)}
-            >
-              {label}
-            </a>
-          ))}
+       {navItems.map(([label, href]) => (
+  <a
+    key={href}
+    href={href}
+    onClick={(event) => handleNavigation(event, href)}
+  >
+    {label}
+  </a>
+))}
           <a
             href="#whatsapp"
             aria-busy={loading}
@@ -414,17 +527,14 @@ function Hero() {
       <div className="hero-grid" aria-hidden="true" />
       <div className="container hero-content">
         <div className="hero-copy">
-          <div className="eyebrow hero-eyebrow">
-            Contabilidade e consultoria empresarial
-          </div>
+          <div className="eyebrow hero-eyebrow">Consultoria </div>
           <h1>
-            <span>Estrutura contábil </span>
-            <span>para decisões</span>
-            <strong>mais seguras.</strong>
+            <span>Aproveite descontos </span>
+            <span>exclusivos e</span>
+            <strong>ofertas únicas.</strong>
           </h1>
           <p>
-            Informação contábil confiável, organização fiscal e orientação
-            próxima para sua empresa crescer com segurança e conformidade.
+            Descontos de até 98%. Fique hoje mesmo no Azul Verifique as ofertas disponíveis para você.
           </p>
           <div className="hero-actions">
             <a
@@ -437,7 +547,7 @@ function Hero() {
                 open(WHATSAPP_MESSAGES.hero);
               }}
             >
-              {loading ? "Carregando..." : "Falar com um contador"}
+              {loading ? "Carregando..." : "Falar com um especialista"}
               <Icon name="arrow" size={17} />
             </a>
             <a className="button button-outline-light" href="#diferenciais">
@@ -445,15 +555,9 @@ function Hero() {
             </a>
           </div>
           <div className="hero-trust">
-            <span>
-              <Icon name="users" size={18} /> Atendimento consultivo
-            </span>
-            <span>
-              <Icon name="shield" size={18} /> Conformidade contábil
-            </span>
-            <span>
-              <Icon name="chart" size={18} /> Visão empresarial
-            </span>
+            <span><Icon name="users" size={18} /> Atendimento humano</span>
+            <span><Icon name="shield" size={18} /> Dados protegidos</span>
+            <span><Icon name="chart" size={18} /> Orientação clara</span>
           </div>
         </div>
 
@@ -464,23 +568,19 @@ function Hero() {
             <Image
               className="hero-person"
               src="/img-mulher.png"
-              alt="Profissional da Borges Ferreira Consultoria Contábil e Empresarial"
+              alt="Especialista em consultoria para pessoa física"
               fill
               priority
               sizes="(max-width: 640px) 96vw, (max-width: 960px) 72vw, 560px"
             />
           </div>
           <div className="experience-seal">
-            <span>Rigor</span>
-            <strong>técnico</strong>
-            <small>na gestão contábil</small>
+            <span>+16</span>
+            <strong>anos</strong>
+            <small>orientando pessoas</small>
           </div>
-          <div className="spark spark-one" aria-hidden="true">
-            ✦
-          </div>
-          <div className="spark spark-two" aria-hidden="true">
-            ✦
-          </div>
+          <div className="spark spark-one" aria-hidden="true">✦</div>
+          <div className="spark spark-two" aria-hidden="true">✦</div>
         </div>
       </div>
       <div className="hero-wave" aria-hidden="true" />
@@ -494,18 +594,27 @@ function Metrics() {
   const metrics = [
     {
       icon: "users",
-      title: "Atendimento próximo",
-      label: "Uma relação consultiva, clara e alinhada à realidade de cada empresa.",
+      target: 16,
+      prefix: "+",
+      suffix: " anos",
+      label: "De experiência",
+      duration: 1300,
     },
     {
       icon: "chart",
-      title: "Visão empresarial",
-      label: "Orientação contábil conectada à gestão e aos objetivos do negócio.",
+      target: 1000,
+      prefix: "+",
+      suffix: "",
+      label: "Pessoas atendidas",
+      duration: 1800,
     },
     {
       icon: "star",
-      title: "Rigor técnico",
-      label: "Responsabilidade e segurança na condução das rotinas contábeis.",
+      target: 98,
+      prefix: "",
+      suffix: "%",
+      label: "Satisfação dos clientes",
+      duration: 1500,
     },
   ];
 
@@ -519,11 +628,19 @@ function Metrics() {
             delay={index * 110}
             variant={metricVariants[index]}
           >
-            <span className="icon-box" data-icon={metric.icon}>
-              <Icon name={metric.icon} size={29} />
-            </span>
+          <span
+            className="icon-box"
+            data-icon={metric.icon}
+          >
+            <Icon name={metric.icon} size={29} />
+          </span>
 
-            <strong>{metric.title}</strong>
+            <CountUp
+              target={metric.target}
+              prefix={metric.prefix}
+              suffix={metric.suffix}
+              duration={metric.duration}
+            />
 
             <span>{metric.label}</span>
           </Reveal>
@@ -548,17 +665,14 @@ function Benefits() {
         <div className="section-heading split-heading">
           <Reveal variant="left">
             <div>
-              <span className="eyebrow">Contabilidade empresarial</span>
-              <h2>
-                Rigor técnico com <em>visão de negócio.</em>
-              </h2>
+              <span className="eyebrow">Por que escolher a gente</span>
+              <h2>Consultoria feita para você, com <em>clareza e segurança.</em></h2>
             </div>
           </Reveal>
 
           <Reveal className="split-heading-copy" variant="right" delay={130}>
             <p>
-              Unimos técnica contábil, proximidade e leitura estratégica para
-              organizar a empresa e apoiar decisões com mais segurança.
+              Unimos atendimento humano, análise cuidadosa e orientação objetiva para ajudar você a tomar decisões com mais tranquilidade.
             </p>
           </Reveal>
         </div>
@@ -571,9 +685,12 @@ function Benefits() {
               delay={index * 85}
               variant={benefitVariants[index]}
             >
-              <span className="icon-box" data-icon={item.icon}>
-                <Icon name={item.icon} size={28} />
-              </span>
+              <span
+  className="icon-box"
+  data-icon={item.icon}
+>
+  <Icon name={item.icon} size={28} />
+</span>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
               <span className="card-shine" aria-hidden="true" />
@@ -593,10 +710,8 @@ function Process() {
       <div className="process-glow" aria-hidden="true" />
       <div className="container process-layout">
         <Reveal className="process-intro" variant="left">
-          <span className="eyebrow">Como atuamos</span>
-          <h2>
-            Da realidade da empresa a uma gestão <em>mais estruturada.</em>
-          </h2>
+          <span className="eyebrow">Como funciona</span>
+          <h2>Um processo simples para entender suas opções e <em>decidir com segurança.</em></h2>
         </Reveal>
 
         <div className="steps-grid">
@@ -608,12 +723,8 @@ function Process() {
               delay={index * 105}
               variant={stepVariants[index]}
             >
-              <span className="step-number">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <span className="icon-box">
-                <Icon name={step.icon} size={29} />
-              </span>
+              <span className="step-number">{String(index + 1).padStart(2, "0")}</span>
+              <span className="icon-box"><Icon name={step.icon} size={29} /></span>
               <h3>{step.title}</h3>
               <p>{step.description}</p>
             </Reveal>
@@ -634,13 +745,13 @@ function Testimonials() {
   return (
     <section className="section testimonials-section" id="depoimentos">
       <div className="container testimonials-layout">
-        <Reveal className="testimonials-title" variant="left">
-          <span className="eyebrow">Depoimentos</span>
+       <Reveal className="testimonials-title" variant="left">
+  <span className="eyebrow">Depoimentos</span>
 
-          <h2>
-            Relações construídas com <em>clareza e confiança.</em>
-          </h2>
-        </Reveal>
+  <h2>
+    Quem recebe orientação, <em>segue com confiança.</em>
+  </h2>
+</Reveal>
         <div className="testimonials-grid">
           {testimonials.map((item, index) => (
             <Reveal
@@ -649,9 +760,7 @@ function Testimonials() {
               delay={index * 110}
               variant={testimonialVariants[index]}
             >
-              <div className="stars" aria-label="5 estrelas">
-                ★★★★★
-              </div>
+              <div className="stars" aria-label="5 estrelas">★★★★★</div>
               <p>“{item.text}”</p>
               <div className="person-row">
                 <span className="avatar">{item.initials}</span>
@@ -684,8 +793,8 @@ function FAQ() {
       <div className="container faq-layout">
         <Reveal className="faq-title" variant="left">
           <span className="eyebrow">Dúvidas frequentes</span>
-          <h2>Informações para uma decisão contábil mais segura.</h2>
-          <p>Entenda como funciona o atendimento da Borges Ferreira.</p>
+          <h2>Respostas claras para você seguir com tranquilidade.</h2>
+          <p>Entenda como funciona o atendimento e quais são os próximos passos.</p>
         </Reveal>
         <div className="faq-grid">
           {faqs.map((item, index) => {
@@ -697,20 +806,12 @@ function FAQ() {
                 variant={faqVariants[index]}
               >
                 <div className={`faq-item ${isOpen ? "is-open" : ""}`}>
-                  <button
-                    type="button"
-                    onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                    aria-expanded={isOpen}
-                  >
+                  <button type="button" onClick={() => setOpenIndex(isOpen ? -1 : index)} aria-expanded={isOpen}>
                     <span>{item.question}</span>
-                    <span className="faq-plus">
-                      <Icon name="plus" size={18} />
-                    </span>
+                    <span className="faq-plus"><Icon name="plus" size={18} /></span>
                   </button>
                   <div className="faq-answer">
-                    <div>
-                      <p>{item.answer}</p>
-                    </div>
+                    <div><p>{item.answer}</p></div>
                   </div>
                 </div>
               </Reveal>
@@ -729,15 +830,10 @@ function CTA() {
     <section className="cta-section">
       <div className="container">
         <Reveal className="cta-card" variant="scale">
-          <div className="cta-icon">
-            <Icon name="message" size={34} />
-          </div>
+          <div className="cta-icon"><Icon name="message" size={34} /></div>
           <div>
-            <h2>Sua empresa precisa de uma contabilidade mais estratégica?</h2>
-            <p>
-              Converse com a Borges Ferreira e receba uma orientação inicial
-              sobre as necessidades contábeis do seu negócio.
-            </p>
+            <h2>Pronto para cuidar melhor da sua vida financeira?</h2>
+            <p>Fale com um especialista, conte sua situação e receba uma orientação clara sobre os próximos passos.</p>
           </div>
           <a
             className="button button-light"
@@ -749,7 +845,7 @@ function CTA() {
               open(WHATSAPP_MESSAGES.cta);
             }}
           >
-            {loading ? "Carregando..." : "Solicitar atendimento"}
+            {loading ? "Carregando..." : "Consultar agora"}
             <Icon name="arrow" size={17} />
           </a>
         </Reveal>
@@ -766,77 +862,46 @@ function Footer() {
       <div className="container footer-grid">
         <Reveal className="footer-brand" variant="left">
           <Brand />
-          <p>
-            Contabilidade e consultoria empresarial para decisões mais seguras e
-            crescimento sustentável.
-          </p>
+          <p>Orientação clara, atendimento humano e soluções pensadas para a realidade de cada pessoa.</p>
           <div className="social-row" aria-label="Redes sociais">
-            <a href="#" aria-label="Instagram">
-              ig
-            </a>
-            <a href="#" aria-label="LinkedIn">
-              in
-            </a>
-            <a href="#" aria-label="Facebook">
-              f
-            </a>
+            <a href="#" aria-label="Instagram">ig</a>
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="Facebook">f</a>
           </div>
         </Reveal>
 
         <Reveal variant="up" delay={80}>
           <h3>Navegação</h3>
           <ul>
-            {navItems.slice(0, 5).map(([label, href]) => (
-              <li key={href}>
-                <a href={href}>{label}</a>
-              </li>
-            ))}
+            {navItems.slice(0, 5).map(([label, href]) => <li key={href}><a href={href}>{label}</a></li>)}
           </ul>
         </Reveal>
 
         <Reveal variant="up" delay={150}>
           <h3>Soluções</h3>
           <ul>
-            <li>Contabilidade empresarial</li>
-            <li>Planejamento tributário</li>
-            <li>Departamento pessoal</li>
-            <li>Consultoria empresarial</li>
-            <li>Regularidade fiscal</li>
+            <li>Análise da situação financeira</li>
+            <li>Orientação para negociação</li>
+            <li>Organização financeira</li>
+            <li>Planejamento de pagamentos</li>
+            <li>Atendimento online</li>
           </ul>
         </Reveal>
 
         <Reveal variant="right" delay={220}>
           <h3>Contato</h3>
           <ul className="contact-list">
-            <li>
-              <Icon name="phone" size={17} />{" "}
-              <a href={COMPANY.phoneHref}>{COMPANY.phone}</a>
-            </li>
-            <li>
-              <Icon name="building" size={17} /> <span>CNPJ:</span>{" "}
-              {COMPANY.cnpj}
-            </li>
-            <li>
-              <Icon name="shield" size={17} /> <span>Registro CRCGO:</span>{" "}
-              {COMPANY.crc}
-            </li>
-            <li>
-              <Icon name="mail" size={17} />{" "}
-              <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
-            </li>
-            <li>
-              <Icon name="pin" size={17} /> {COMPANY.address}
-            </li>
+            <li><Icon name="phone" size={17} /> (11) 99999-9999</li>
+            <li><Icon name="building" size={17} /> <span>CNPJ:</span> 57.924.057/0001-02</li>
+            <li><Icon name="mail" size={17} /> contato@consultoriacontabil.pro</li>
+            <li><Icon name="pin" size={17} /> Avenida Manoel Monteiro - Lado Par 390 Quadra15 Lote 21 Andar 2, Vila Jardim Salvador,  Trindade/GO, 75388-455</li>
           </ul>
         </Reveal>
       </div>
 
       <Reveal className="container footer-bottom" variant="up" delay={120}>
-        <span>© 2026 {COMPANY.name}. Todos os direitos reservados.</span>
-        <span>
-          <a href="/politica-de-privacidade">Política de Privacidade</a>
-          <a href="/termos-de-uso">Termos de Uso</a>
-        </span>
+        <span>© 2026 Assessoria &amp; Consulta. Todos os direitos reservados.</span>
+        <span><a href="/politica-de-privacidade">Política de Privacidade</a><a href="/termos-de-uso">Termos de Uso</a></span>
       </Reveal>
       <a
         className="whatsapp-float"

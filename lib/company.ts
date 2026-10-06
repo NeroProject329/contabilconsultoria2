@@ -3,7 +3,6 @@ export const COMPANY = {
   legalName: "BORGES FERREIRA CONSULTORIA CONTABIL E EMPRESARIAL LTDA",
   tagline: "Consultoria Contábil & Empresarial",
   cnpj: "57.924.057/0001-02",
-  crc: "GO-004813/O-5",
   email: "contato@contabilconsultoria.com",
   phone: "(62) 98583-8656",
   phoneHref: "tel:+5562985838656",

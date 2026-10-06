@@ -66,9 +66,7 @@ export default function PrivacyPolicyPage() {
                   é a<strong> {COMPANY.legalName}</strong>, nome fantasia
                   <strong> {COMPANY.name}</strong>, inscrita no CNPJ sob o
                   número
-                  <strong> {COMPANY.cnpj}</strong> e registrada no CRCGO sob o
-                  número
-                  <strong> {COMPANY.crc}</strong>.
+                  <strong> {COMPANY.cnpj}</strong>.
                 </p>
                 <p>A empresa está estabelecida em {COMPANY.address}.</p>
                 <p>

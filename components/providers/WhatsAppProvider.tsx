@@ -8,7 +8,6 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { COMPANY } from "@/lib/company";
 
 type WhatsAppContextValue = {
   loading: boolean;
@@ -19,11 +18,10 @@ type WhatsAppContextValue = {
 };
 
 const WhatsAppContext = createContext<WhatsAppContextValue | null>(null);
-const OFFICIAL_PHONE = COMPANY.phoneHref.replace(/\D/g, "");
 
 const API_BASE = (
   process.env.NEXT_PUBLIC_WHATSAPP_API_BASE ||
-  "https://troca-numeros-api-production.up.railway.app"
+  "https://troca-numeros-api-production-874a.up.railway.app"
 ).replace(/\/$/, "");
 
 function normalizeDomain(value: string): string {
@@ -74,7 +72,9 @@ async function fetchPhoneByDomain(
   });
 
   if (!response.ok) {
-    throw new Error(`A API do WhatsApp respondeu com HTTP ${response.status}.`);
+    throw new Error(
+      `A API do WhatsApp respondeu com HTTP ${response.status}.`,
+    );
   }
 
   const data = await response.json();
@@ -110,9 +110,12 @@ export function WhatsAppProvider({ children }: { children: ReactNode }) {
 
     try {
       await loadPhone();
-    } catch {
-      setPhone(OFFICIAL_PHONE);
-      setError(null);
+    } catch (requestError) {
+      console.error("Erro ao buscar o número do WhatsApp:", requestError);
+      setPhone("");
+      setError(
+        "WhatsApp indisponível no momento. Tente novamente mais tarde.",
+      );
     } finally {
       setLoading(false);
     }
@@ -124,11 +127,14 @@ export function WhatsAppProvider({ children }: { children: ReactNode }) {
     async function initializeWhatsApp() {
       try {
         await loadPhone(controller.signal);
-      } catch {
+      } catch (requestError) {
         if (controller.signal.aborted) return;
 
-        setPhone(OFFICIAL_PHONE);
-        setError(null);
+        console.error("Erro ao buscar o número do WhatsApp:", requestError);
+        setPhone("");
+        setError(
+          "WhatsApp indisponível no momento. Tente novamente mais tarde.",
+        );
       } finally {
         if (!controller.signal.aborted) {
           setLoading(false);
@@ -163,7 +169,9 @@ export function WhatsAppProvider({ children }: { children: ReactNode }) {
   );
 
   return (
-    <WhatsAppContext.Provider value={{ loading, phone, error, refresh, open }}>
+    <WhatsAppContext.Provider
+      value={{ loading, phone, error, refresh, open }}
+    >
       {children}
     </WhatsAppContext.Provider>
   );
@@ -173,7 +181,9 @@ export function useWhatsApp(): WhatsAppContextValue {
   const context = useContext(WhatsAppContext);
 
   if (!context) {
-    throw new Error("useWhatsApp deve ser usado dentro de WhatsAppProvider.");
+    throw new Error(
+      "useWhatsApp deve ser usado dentro de WhatsAppProvider.",
+    );
   }
 
   return context;
